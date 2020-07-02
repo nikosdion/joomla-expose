@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ @package   ExposeJoomla
+  ~ @copyright Copyright (c)2020-2020 Nicholas K. Dionysopoulos
+  ~ @license   GNU General Public License version 3, or later
+  -->
+<extension version="3.9.0" type="plugin" group="system" method="upgrade">
+	<name>PLG_SYSTEM_EXPOSE</name>
+	<version>1.0.0</version>
+	<creationDate>2020-07-02</creationDate>
+
+	<author>Nicholas K. Dionysopoulos</author>
+	<authorEmail>no-reply@dionysopoulos.me</authorEmail>
+	<authorUrl>https://www.dionysopoulos.me</authorUrl>
+
+	<copyright>Copyright (c)2020 Nicholas K. Dionysopoulos</copyright>
+	<license>GNU GPL v3 or later</license>
+
+	<description>PLG_SYSTEM_EXPOSE_XML_DESC</description>
+
+	<files>
+		<filename plugin="expose">expose.php</filename>
+
+		<filename>.htaccess</filename>
+		<filename>web.config</filename>
+	</files>
+
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.plg_system_expose.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_system_expose.sys.ini</language>
+	</languages>
+</extension>
