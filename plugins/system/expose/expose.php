@@ -9,6 +9,7 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Uri\Uri;
 
 class plgSystemExpose extends CMSPlugin
 {
@@ -35,5 +36,15 @@ class plgSystemExpose extends CMSPlugin
 
 		// Change of the live site URL to the forwarded protocol and host
 		Factory::getConfig()->set('live_site', sprintf('%s://%s', $forwardedProto, $forwardedHost));
+
+		// At this point Joomla may have already picked up the domain name from the server. Change it!
+		$uri = Uri::getInstance();
+		$uri->setScheme($forwardedProto);
+		$uri->setHost($forwardedHost);
+
+		// This shouldn't be necessary but you can't be *too* cautious
+		$_SERVER['REQUEST_SCHEME'] = $forwardedProto;
+		$_SERVER['SERVER_NAME'] = $forwardedHost;
+		$_SERVER['HTTP_HOST'] = $forwardedHost;
 	}
 }
