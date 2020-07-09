@@ -5,28 +5,55 @@
   ~ @license   GNU General Public License version 3, or later
   -->
 <extension version="3.9.0" type="plugin" group="system" method="upgrade">
-	<name>PLG_SYSTEM_EXPOSE</name>
-	<version>1.0.0</version>
-	<creationDate>2020-07-02</creationDate>
+    <name>PLG_SYSTEM_EXPOSE</name>
+    <version>1.0.0</version>
+    <creationDate>2020-07-02</creationDate>
 
-	<author>Nicholas K. Dionysopoulos</author>
-	<authorEmail>no-reply@dionysopoulos.me</authorEmail>
-	<authorUrl>https://www.dionysopoulos.me</authorUrl>
+    <author>Nicholas K. Dionysopoulos</author>
+    <authorEmail>no-reply@dionysopoulos.me</authorEmail>
+    <authorUrl>https://www.dionysopoulos.me</authorUrl>
 
-	<copyright>Copyright (c)2020 Nicholas K. Dionysopoulos</copyright>
-	<license>GNU GPL v3 or later</license>
+    <copyright>Copyright (c)2020 Nicholas K. Dionysopoulos</copyright>
+    <license>GNU GPL v3 or later</license>
 
-	<description>PLG_SYSTEM_EXPOSE_XML_DESC</description>
+    <description>PLG_SYSTEM_EXPOSE_XML_DESC</description>
 
-	<files>
-		<filename plugin="expose">expose.php</filename>
+    <files>
+        <filename plugin="expose">expose.php</filename>
 
-		<filename>.htaccess</filename>
-		<filename>web.config</filename>
-	</files>
+        <filename>.htaccess</filename>
+        <filename>web.config</filename>
+    </files>
 
-	<languages folder="language">
-		<language tag="en-GB">en-GB/en-GB.plg_system_expose.ini</language>
-		<language tag="en-GB">en-GB/en-GB.plg_system_expose.sys.ini</language>
-	</languages>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_system_expose.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_expose.sys.ini</language>
+    </languages>
+
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field
+                        name="domain"
+                        type="text"
+                        label="PLG_SYSTEM_EXPOSE_DOMAIN_LABEL"
+                        description="PLG_SYSTEM_EXPOSE_DOMAIN_DESC"
+                        default=""
+                    />
+
+                <field
+                        name="only_internal"
+                        type="radio"
+                        label="PLG_SYSTEM_EXPOSE_ONLY_INTERNAL_LABEL"
+                        description="PLG_SYSTEM_EXPOSE_ONLY_INTERNAL_DESC"
+                        class="btn-group btn-group-yesno"
+                        default="1"
+                >
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+
+            </fieldset>
+        </fields>
+    </config>
 </extension>

@@ -4,8 +4,6 @@ A plugin which allows local Joomla 3 and 4 sites to be served over the web using
 
 ## Instructions
 
-**WARNING** You must ONLY install this plugin on a site hosted on a local server such as MAMP, XAMPP or WAMP and only if you want to use [Expose by BeyondCode](https://github.com/beyondcode/expose). **DO NOT** install on a live site. **DO NOT** install if you are not sure if you really need this plugin. 
-
 Create a ZIP file with the contents of the `plugins/system/expose` folder of this repository. Install it in Joomla like any other extension.
 
 Go to Extensions, Manage, Plugins.
@@ -52,14 +50,20 @@ In simple terms, publishing this plugin will _magically_ make your Joomla site w
 
 The plugin itself causes a sub-millisecond performance impact but sharing your locally hosted Joomla site through Expose is _slow_. 
 
-This plugin is meant to be installed on a site hosted on a local server which is not directly connected to the Internet. If you use it on a live site, directly accessible from the Internet without going through Expose, there are security concerns. **DO NOT EVER** use this on a live site.
+This plugin is meant to be installed on a site hosted on a local server which is not directly connected to the Internet. If you use it on a live site, directly accessible from the Internet without going through Expose, there are security concerns. However, there are technical measures to automatically make the plugin inert on live sites to mitigate these concerns.
 
 ### Gory, technical details
 
 The performance impact of this plugin is negligible, in the area of a fraction of a millisecond. That said, accessing your site through Expose is _slow_ since every request (even for static resources) has to do the roundtrip browser, Expose server, local server, Expose server and back to the browser. You will see that your site loads as though you're on a slow 3G connection even if you have very fast WiFi. It's not an artefact of the plugin but rather how Expose itself works.
 
-As far as security goes, **you MUST NOT install this plugin on a live site**. This plugin is explicitly designed to be installed on _development sites hosted on your local server_ and for the sole intended purpose of facilitating the use of Expose. If you install it on a live server you run the very real risk of your site being abused for phishing and / or malicious backlinks.
+As far as security goes, the plugin has two options which make it inert on a live site to mitigate any potential risks (more on those risks later). By default, the “Only for private network IPs” option is enabled. This makes the plugin inert if your site is being accessed on a hostname that resolves to an IP address outside the localhost and private IP address space.
+
+Now let's see what happens if you disable this option; or if you're on a weird host that sends the wrong hostname to Joomla _and_ you've not set up `$live_host` in your `configuration.php` (how your site works at all in this case is beyond me).
+
+This plugin is explicitly designed to execute on _development sites hosted on your local server_ and for the sole intended purpose of facilitating the use of Expose. If you get it to execute on a live server you run the very real risk of your site being abused for phishing and / or malicious backlinks.
 
 Here's the technical reasoning. If there's an `X-Exposed-By` HTTP header whose content begins with the string `Expose ` this plugin kicks in and honors the `X-Forwarded-Host` and `X-Forwarded-Proto` HTTP headers. This means that your site will believe it's being served under the domain name defined in the `X-Forwarded-Host` header and all of its links – including form submission URLs and media files – will point to that domain name. An attacker can easily abuse this to inject their own, malicious code in the page, create phishing pages or serve malicious links.
 
-This is not an issue with a site hosted _on a local development server_ because any attack of this kind requires the server being directly exposed to the Internet and its domain name known to the attacker. The whole point of using Expose is that your local development server _is not_ connected directly to the Internet. Therefore, by definition, the only possible attack mode is not possible for your local development server. The problem only begins with a _live_ server. So, please, DO NOT install on a live site.
+This is not an issue with a site hosted _on a local development server_ because any attack of this kind requires the server being directly exposed to the Internet and its domain name known to the attacker. The whole point of using Expose is that your local development server _is not_ connected directly to the Internet. Therefore, by definition, the only possible attack mode is not possible for your local development server. The problem can only occur on a _live_ server.
+
+Please note that despite the technical measures in place to mitigate the security risks of accidentally using this plugin on a live host I very strongly recommend _NOT_ publishing this plugin on a live server. The technical measures in place are a last resort, much like an airbag. It's best if you don't enable this plugin on a live host just like it's much more preferable you do not drive into a wall in the first place.
