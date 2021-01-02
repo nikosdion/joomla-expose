@@ -1,15 +1,15 @@
 <?php
 /**
  * @package   ExposeJoomla
- * @copyright Copyright (c)2020-2020 Nicholas K. Dionysopoulos
+ * @copyright Copyright (c)2020-2021 Nicholas K. Dionysopoulos
  * @license   GNU General Public License version 3, or later
  */
 
-$hardlink_files = array(
-);
+$hardlink_files = [
+];
 
-$symlink_files = array(
-);
+$symlink_files = [
+];
 
-$symlink_folders = array(
-);
+$symlink_folders = [
+];
