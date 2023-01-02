@@ -105,17 +105,12 @@ class plgSystemExpose extends CMSPlugin
 		// Update all Uri instances in memory
 		$refInstances = $refClass->getProperty('instances');
 		$refInstances->setAccessible(true);
-		$instances = array_map(function (Uri $uri) use ($oldDomain, $forwardedHost, $forwardedProto) {
-			if ($uri->getHost() != $oldDomain)
-			{
-				return $uri;
-			}
-
-			$uri->setScheme($forwardedProto);
-			$uri->setHost($forwardedHost);
-
-			return $uri;
-		}, $refInstances->getValue());
+		$serverUri = Uri::getInstance();
+		$serverUri->setScheme($forwardedProto);
+		$serverUri->setHost($forwardedHost);
+		$instances = [
+			'SERVER' => new Uri($serverUri->toString())
+		];
 		$refInstances->setValue($instances);
 
 		/**
