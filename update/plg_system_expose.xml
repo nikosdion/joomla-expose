@@ -1,0 +1,38 @@
+<updates>
+    <update>
+        <version>1.0.0</version>
+        <tags>
+            <tag>stable</tag>
+        </tags>
+
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/nikosdion/joomla-expose/releases/download/1.0.0/plg_system_expose.zip</downloadurl>
+        </downloads>
+        <sha512>bcbe6371086a8276406a6a4294d74f141c4a2d31ac56fdb2059ec44f9279aa0330770362f29eeadf40a74caa46b612af1f86069cf6de580cb5c1944a56eb316e</sha512>
+        <sha256>c43c0815959afa06879193ab781ea360d1a190b34e85d24180e942f4e4fe66a5</sha256>
+        <sha1>329320594047fd4a570d6fc9e571455e1adb9477</sha1>
+        <md5>629c8aff7ed2c37d82819ecf6c465747</md5>
+
+        <infourl title="Release Notes">https://github.com/nikosdion/joomla-expose/releases/tag/1.0.0</infourl>
+
+        <targetplatform name="joomla" version="3\.9|3\.10|4.[01234]"/>
+
+        <php_minimum>7.2.0</php_minimum>
+
+        <ars-phpcompat version="7.2"/>
+        <ars-phpcompat version="7.3"/>
+        <ars-phpcompat version="7.4"/>
+        <ars-phpcompat version="8.0"/>
+        <ars-phpcompat version="8.1"/>
+        <ars-phpcompat version="8.2"/>
+
+        <name><![CDATA[Expose plugin for Joomla!]]></name>
+        <description><![CDATA[Use Joomla! with Expose by BeyondCode more easily.]]></description>
+        <maintainer><![CDATA[Nicholas K. Dionysopoulos]]></maintainer>
+        <maintainerurl><![CDATA[https://www.dionysopoulos.me]]></maintainerurl>
+        <type>plugin</type>
+        <element>expose</element>
+        <folder>system</folder>
+        <client>administrator</client>
+    </update>
+</updates>
