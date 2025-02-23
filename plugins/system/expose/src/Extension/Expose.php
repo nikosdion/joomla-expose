@@ -290,7 +290,7 @@ class Expose extends CMSPlugin implements SubscriberInterface
 		$mustEnable = true;
 
 		// Check if the Global Configuration setting Behind Load Balancer is enabled; it enables IP overrides.
-		if ($this->app->get('behind_loadbalancer', 0))
+		if ($this->getApplication()->get('behind_loadbalancer', 0))
 		{
 			$mustEnable = false;
 		}
@@ -396,9 +396,16 @@ class Expose extends CMSPlugin implements SubscriberInterface
 			] as $property => $newValue
 		)
 		{
-			$refProp = $refClass->getProperty($property);
-			$refProp->setAccessible(true);
-			$refProp->setValue($newValue);
+			if (version_compare(PHP_VERSION, '8.3.0', '>='))
+			{
+				$refClass->setStaticPropertyValue($property, $newValue);
+			}
+			else
+			{
+				$refProp = $refClass->getProperty($property);
+				$refProp->setAccessible(true);
+				$refProp->setValue($newValue);
+			}
 		}
 	}
 }
